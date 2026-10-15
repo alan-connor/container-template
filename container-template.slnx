@@ -1,0 +1,28 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".gitignore" />
+    <File Path="deploy-local.ps1" />
+    <File Path="dockerfile" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/.github/" />
+  <Folder Name="/Solution Items/.github/workflows/">
+    <File Path=".github/workflows/ci.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/helm/">
+    <File Path="helm/Chart.yaml" />
+    <File Path="helm/values.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/helm/templates/">
+    <File Path="helm/templates/deployment.yaml" />
+    <File Path="helm/templates/ingress.yaml" />
+    <File Path="helm/templates/service.yaml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Container.Template.Api/Container.Template.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Container.Template.Api.Tests/Container.Template.Api.Tests.csproj" />
+  </Folder>
+</Solution>

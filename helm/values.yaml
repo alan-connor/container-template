@@ -1,0 +1,37 @@
+# Values for deploying container-template to a local Rancher (k3s) cluster.
+
+replicaCount: 1
+
+image:
+  # Image published to GitHub Container Registry by .github/workflows/docker-build.yml
+  repository: ghcr.io/alan-connor/container-template
+  tag: "latest"          # main branch also publishes main-<sha>; override with --set image.tag=...
+  pullPolicy: IfNotPresent
+
+# Only needed if the ghcr.io package is PRIVATE. Create the secret first (see NOTES),
+# then set this to the secret name, e.g. ghcr-pull. Leave empty for a public package.
+imagePullSecrets: []
+# - name: ghcr-pull
+
+service:
+  type: ClusterIP
+  port: 80          # in-cluster port
+  targetPort: 8080  # the container listens on 8080 (ASPNETCORE_HTTP_PORTS / Dockerfile EXPOSE 8080)
+
+# Ingress via Rancher Desktop's built-in Traefik controller (listens on localhost:80/443).
+# *.localhost resolves to 127.0.0.1, so no hosts-file edit is needed.
+ingress:
+  enabled: true
+  className: traefik
+  host: container-template.localhost
+  path: /
+  pathType: Prefix
+
+# Environment set on the container. ASPNETCORE_HTTP_PORTS keeps the app on 8080.
+env:
+  ASPNETCORE_HTTP_PORTS: "8080"
+  ASPNETCORE_ENVIRONMENT: "Production"
+  # Swagger is off by default outside Development; switched on here for the local cluster.
+  Swagger__Enable: "true"
+
+resources: {}

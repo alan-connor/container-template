@@ -1,0 +1,6 @@
+apiVersion: v2
+name: container-template
+description: Minimal Helm chart to deploy the Container.Template.Api image to a local Kubernetes/Rancher cluster.
+type: application
+version: 0.1.0
+appVersion: "latest"
